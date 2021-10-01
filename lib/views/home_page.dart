@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:story_app_flutter/config/app_colors.dart';
 import 'package:story_app_flutter/config/custom_icon.dart';
+import 'package:story_app_flutter/config/size_config.dart';
 import 'package:story_app_flutter/data/data.dart';
+import 'package:story_app_flutter/widgets/card_scroll_widget.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -31,7 +33,7 @@ class _HomePageState extends State<HomePage> {
           end: Alignment.topCenter,
           colors: [
             AppColors.darkBlue,
-            AppColors.lightBlue,
+            AppColors.middleBlue,
           ],
           tileMode: TileMode.clamp,
         ),
@@ -87,6 +89,49 @@ class _HomePageState extends State<HomePage> {
                     )
                   ],
                 ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Row(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.pink,
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 22.0, vertical: 6.0),
+                        child: Center(
+                          child: Text('Animated',
+                              style: TextStyle(color: AppColors.white)),
+                        ),
+                      ),
+                    ),
+                    SizeConfig.horizontalSpace(15),
+                    Text(
+                      "25+ Stories",
+                      style: TextStyle(color: AppColors.blueAccent),
+                    ),
+                  ],
+                ),
+              ),
+              Stack(
+                children: [
+                  CardScrollWidget(
+                    currentPage: currentPage,
+                    widgetAspectRatio: (12.0 / 16.0) * 1.2,
+                  ),
+                  Positioned.fill(
+                      child: PageView.builder(
+                    itemCount: images.length,
+                    controller: pageController,
+                    reverse: true,
+                    itemBuilder: (context, index) {
+                      return Container();
+                    },
+                  ))
+                ],
               ),
             ],
           ),
