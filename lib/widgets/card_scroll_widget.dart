@@ -61,7 +61,7 @@ class CardScrollWidget extends StatelessWidget {
                       blurRadius: 10.0)
                 ]),
                 child: AspectRatio(
-                  aspectRatio: 12.0 / 16.0,
+                  aspectRatio: 12 / 16,
                   child: Stack(
                     fit: StackFit.expand,
                     children: <Widget>[

@@ -1,11 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter/widgets.dart';
 import 'package:story_app_flutter/config/app_colors.dart';
-import 'package:story_app_flutter/config/custom_icon.dart';
 import 'package:story_app_flutter/config/size_config.dart';
 import 'package:story_app_flutter/data/data.dart';
-import 'package:story_app_flutter/widgets/card_scroll_widget.dart';
+import 'components/cauresel_section.dart';
+import 'components/favorite_title_row.dart';
+import 'components/image_section.dart';
+import 'components/lable_row.dart';
+import 'components/latest_lable_row.dart';
+import 'components/menu_row.dart';
+import 'components/title_row.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -42,97 +47,18 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: 12.0, right: 12.0, top: 30.0, bottom: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.menu,
-                        color: Colors.white,
-                        size: 30.0,
-                      ),
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.search,
-                        color: Colors.white,
-                        size: 30.0,
-                      ),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Trending",
-                        style: TextStyle(
-                          color: AppColors.white,
-                          fontSize: 46.0,
-                          fontFamily: "Calibre-Semibold",
-                          letterSpacing: 1.0,
-                        )),
-                    IconButton(
-                      onPressed: () {},
-                      icon: FaIcon(
-                        FontAwesomeIcons.elementor,
-                        color: AppColors.white,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0),
-                child: Row(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.pink,
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 22.0, vertical: 6.0),
-                        child: Center(
-                          child: Text('Animated',
-                              style: TextStyle(color: AppColors.white)),
-                        ),
-                      ),
-                    ),
-                    SizeConfig.horizontalSpace(15),
-                    Text(
-                      "25+ Stories",
-                      style: TextStyle(color: AppColors.blueAccent),
-                    ),
-                  ],
-                ),
-              ),
-              Stack(
-                children: [
-                  CardScrollWidget(
-                    currentPage: currentPage,
-                    widgetAspectRatio: (12.0 / 16.0) * 1.2,
-                  ),
-                  Positioned.fill(
-                      child: PageView.builder(
-                    itemCount: images.length,
-                    controller: pageController,
-                    reverse: true,
-                    itemBuilder: (context, index) {
-                      return Container();
-                    },
-                  ))
-                ],
-              ),
+              MenuRow(),
+              TitleRow(),
+              LableRow(),
+              CarouselSection(
+                  currentPage: currentPage, pageController: pageController),
+              FavoriteTitleRow(),
+              LatestLabelRow(),
+              SizeConfig.verticalSpace(15),
+              ImageSection(),
+              SizeConfig.verticalSpace(25),
             ],
           ),
         ),
